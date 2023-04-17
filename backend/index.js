@@ -78,7 +78,7 @@ app.post("/login", async (req, res)=> {
                     // console.log(user)
                     // console.log(newLoggedUser)
                     console.log(user.identity)
-                    res.cookie('jwt', refreshToken, {httpOnly : true, sameSite : 'Strict', maxAge : 24 * 60 * 60 * 1000})
+                    res.cookie('jwt', refreshToken, {httpOnly : true,secure:true, sameSite : 'Strict', maxAge : 24 * 60 * 60 * 1000})
                     res.json({ message: "Login Successfull", user: user, accessToken })
                     
                     // res.send({message: "Login Successfull", user: user})
@@ -165,11 +165,11 @@ app.get("/logout", async (req, res) => {
             res.send({message : err.message})
         }
         if(!user){
-            res.clearCookie('jwt', {httpOnly : true, sameSite : 'Strict', maxAge : 24 * 60 * 60 * 1000})
+            res.clearCookie('jwt', {httpOnly : true,secure:true, sameSite : 'Strict', maxAge : 24 * 60 * 60 * 1000})
             res.sendStatus(204)     // No content
         }
         await loggedUser.deleteOne({refreshToken : refreshToken})
-        res.clearCookie('jwt', {httpOnly : true, sameSite : 'Strict', maxAge : 24 * 60 * 60 * 1000})     // secure : true on production for both creating and clearing cookie
+        res.clearCookie('jwt', {httpOnly : true,secure:true, sameSite : 'Strict', maxAge : 24 * 60 * 60 * 1000})     // secure : true on production for both creating and clearing cookie
         res.sendStatus(204)
     })
 })
