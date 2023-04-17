@@ -57,7 +57,7 @@ const Login = ({ setLoginUser }) => {
   		return;
   	}
     axios
-      .post("http://localhost:9002/login", user, { withCredentials: true })
+      .post("https://e-vaidya.onrender.com/login", user, { withCredentials: true })
       .then((res) => {
         // alert(res.data.message);
         console.log(res.data);

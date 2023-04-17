@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:9002";
+const BASE_URL = "https://e-vaidya.onrender.com";
 
 export default axios.create({
     baseURL : BASE_URL
